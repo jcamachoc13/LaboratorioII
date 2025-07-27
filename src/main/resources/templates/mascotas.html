@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mascotas</title>
+</head>
+<body>
+    <h1>Mascotas de las Personas</h1>
+    <a th:href="@{/personas}">Volver a personas</a>
+    <a th:href="@{/personas/{personaId}/mascotas/nueva(personaId=${personaId})}">Agregar una Mascota</a>
+    <table border="1">
+        <tr><th>ID</th><th>Nombre</th><th>Acciones</th></tr>
+        <tr th:each="mascota : ${mascotas}">
+            <td th:text="${mascota.id}"></td>
+            <td th:text="${mascota.nombre}"></td>
+            <td>
+                <a th:href="@{/personas/{personaId}/mascotas/editar/{id}(personaId=${personaId}, id=${mascota.id})}">Editar</a>
+                <a th:href="@{/personas/{personaId}/mascotas/eliminar/{id}(personaId=${personaId}, id=${mascota.id})}"
+                onclick="return confirm('Esta seguro que desea eliminar esta mascota?');">
+                Eliminar
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

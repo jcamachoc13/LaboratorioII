@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cursos de la Persona</title>
+</head>
+<body>
+    <h1 th:text="'Cursos de ' + ${persona.nombre}">Cursos</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre del Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="curso : ${listaCursos}">
+                <td th:text="${curso.id}"></td>
+                <td th:text="${curso.nombreCurso}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/personas}">Volver a Personas</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Persona</title>
+</head>
+<body>
+    <h1>Editar Persona</h1>
+    <form th:action="@{/personas/actualizar/{id}(id=${persona.id})}" th:object="${persona}" method="post">
+        <label>Nombre: <input type="text" th:field="*{nombre}" /></label><br/>
+        <label>Correo: <input type="email" th:field="*{correo}" /></label><br/>
+        <h3>Cursos asignados:</h3>
+        <div th:each="curso : ${listaCursos}">
+            <input type="checkbox"
+                   th:value="${curso.id}"
+                   th:field="*{cursos}"
+                   th:checked="${persona.cursos.contains(curso)}" />
+            <label th:text="${curso.nombreCurso}"></label><br/>
+        </div>
+        <br/>
+        <button type="submit">Actualizar</button>
+    </form>
+</body>
+</html>
